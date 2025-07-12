@@ -1,0 +1,30 @@
+# Data Sources
+tweepy
+praw
+yfinance
+requests
+
+# Sentiment & NLP
+vaderSentiment
+transformers
+torch
+spacy
+textblob
+
+# VectorDB (Optional for history)
+chromadb
+
+# LLM & LLM API
+groq
+openai  # fallback if needed
+
+# Backend & Frontend
+flask
+streamlit
+python-dotenv
+
+# Data handling & utils
+pandas
+matplotlib
+scikit-learn
+tqdm
