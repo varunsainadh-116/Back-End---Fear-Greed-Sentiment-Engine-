@@ -11,19 +11,19 @@ torch
 spacy
 textblob
 
-# VectorDB (Optional for history)
+# VectorDB (optional, only if you're storing embeddings)
 chromadb
 
-# LLM & LLM API
+#  LLM & APIs
 groq
-openai  # fallback if needed
+openai  # (Optional fallback, not needed if only using Groq)
 
-# Backend & Frontend
+# Backend & UI
 flask
 streamlit
 python-dotenv
 
-# Data handling & utils
+# Data Handling
 pandas
 matplotlib
 scikit-learn

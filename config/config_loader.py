@@ -2,17 +2,23 @@
 # This file is responsible for loading configuration settings from environment variables.
 # config/config_loader.py
 
-from dotenv import load_dotenv
 import os
-from pathlib import Path
+from dotenv import load_dotenv
 
 # Load environment variables from .env file
-env_path = Path("config") / ".env"
-load_dotenv(dotenv_path=env_path)
+load_dotenv()
 
-# Access variables
-TWITTER_BEARER_TOKEN = os.getenv("TWITTER_BEARER_TOKEN")
+# Reddit API Keys
 REDDIT_CLIENT_ID = os.getenv("REDDIT_CLIENT_ID")
 REDDIT_SECRET = os.getenv("REDDIT_SECRET")
+REDDIT_USER_AGENT = os.getenv("REDDIT_USER_AGENT")  # ✅ Add this line
+
+# Twitter API
+TWITTER_BEARER_TOKEN = os.getenv("TWITTER_BEARER_TOKEN")
+
+# News API
 NEWSAPI_KEY = os.getenv("NEWSAPI_KEY")
+
+# Groq API
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+
