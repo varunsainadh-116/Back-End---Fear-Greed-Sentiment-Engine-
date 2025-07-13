@@ -1,47 +1,12 @@
-# 1. Python Bytecode
-__pycache__/
-*.py[cod]
-*.so
-*.egg
-*.egg-info/
-dist/
-build/
-
-# 2. Virtual Environment
-venv/
-.env
-.env.*
-
-# 3. API Keys & Config Files
+# Ignore environment files
 config/.env
-config/*.env
-*.key
-*.pem
 
-# 4. Jupyter Notebooks Checkpoints (if used)
-.ipynb_checkpoints
+# Ignore virtual env
+venv/
 
-# 5. VSCode / PyCharm
-.vscode/
-.idea/
+# Ignore Python cache
+__pycache__/
+*.pyc
 
-# 6. Logs, Data Dumps
-*.log
-*.csv
-*.json
-data/
-*.db
-*.sqlite
-
-# 7. OS-specific files
+# Ignore OS-specific files
 .DS_Store
-Thumbs.db
-
-# 8. Streamlit cache
-.streamlit/
-.cache/
-
-# 9. Test & Coverage
-.coverage
-*.pytest_cache/
-htmlcov/
