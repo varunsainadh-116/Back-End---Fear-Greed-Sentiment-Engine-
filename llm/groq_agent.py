@@ -9,14 +9,13 @@ GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
 # ✅ Define the Groq client
 client = Groq(api_key=GROQ_API_KEY)
-
-def get_trade_suggestion(prompt: str) -> str:
+def get_trade_suggestion(user_prompt: str, system_prompt: str = "You are a crypto investment advisor.") -> str:
     try:
         response = client.chat.completions.create(
-            model="llama3-8b-8192",  # You can also test with llama3-70b-8192 if needed
+            model="llama3-8b-8192",
             messages=[
-                {"role": "system", "content": "You are a crypto investment advisor."},
-                {"role": "user", "content": prompt},
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_prompt},
             ]
         )
         return response.choices[0].message.content
