@@ -1,11 +1,9 @@
-# utils/handlers.py
-
 import re
 from llm.groq_agent import get_trade_suggestion
 from utils.twitter_utils import get_tweet_text_from_url
 from utils.reddit_utils import get_reddit_post_content
 from utils.sentiment_utils import get_sentiment_score
-from utils.market_utils import get_price_change
+from utils.market_utils import get_market_stats
 from utils.helpers import extract_ticker
 
 
@@ -22,7 +20,8 @@ def handle_text_input(user_input: str) -> str:
                 "Could you please specify the asset (e.g. BTC, ETH, SOL)?"
             )
 
-        price_change = get_price_change(ticker)
+        market = get_market_stats(ticker)
+        price_change = market["price"]
         sentiment_score = get_sentiment_score(user_input)
 
         prompt = f"""
@@ -37,10 +36,11 @@ def handle_text_input(user_input: str) -> str:
         """
         return get_trade_suggestion(prompt)
 
-    
+
 def handle_custom_text(text: str) -> str:
     ticker = extract_ticker(text)
-    price_change = get_price_change(ticker)
+    market = get_market_stats(ticker)
+    price_change = market["price"]
     sentiment_score = get_sentiment_score(text)
 
     prompt = f"""
@@ -52,13 +52,15 @@ def handle_custom_text(text: str) -> str:
     """
     return get_trade_suggestion(prompt)
 
+
 def handle_tweet_url(url: str) -> str:
     tweet_text = get_tweet_text_from_url(url)
     if not tweet_text:
         return "⚠️ Unable to fetch tweet content."
 
     ticker = extract_ticker(tweet_text)
-    price_change = get_price_change(ticker)
+    market = get_market_stats(ticker)
+    price_change = market["price"]
     sentiment_score = get_sentiment_score(tweet_text)
 
     prompt = f"""
@@ -70,13 +72,15 @@ def handle_tweet_url(url: str) -> str:
     """
     return get_trade_suggestion(prompt)
 
+
 def handle_reddit_url(url: str) -> str:
     post_text = get_reddit_post_content(url)
     if not post_text:
         return "⚠️ Unable to fetch Reddit post."
 
     ticker = extract_ticker(post_text)
-    price_change = get_price_change(ticker)
+    market = get_market_stats(ticker)
+    price_change = market["price"]
     sentiment_score = get_sentiment_score(post_text)
 
     prompt = f"""

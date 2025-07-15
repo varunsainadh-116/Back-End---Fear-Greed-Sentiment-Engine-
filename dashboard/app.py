@@ -4,12 +4,11 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 import streamlit as st
 from utils.handlers import handle_text_input
-from utils.market_utils import get_price_change
 from utils.sentiment_utils import get_sentiment_score
 from utils.helpers import extract_ticker
 from utils.signal_utils import generate_signal
 from dashboard.ui_components import render_trade_signal
-
+from utils.market_utils import get_market_stats
 
 
 # Page setup
@@ -35,8 +34,11 @@ if user_input:
         ticker = extract_ticker(user_input)
         ticker = ticker if ticker else "BTC"
         sentiment = float(get_sentiment_score(user_input))
-        price = float(get_price_change(ticker).replace("%", ""))
-        signal = generate_signal(sentiment, price)
+        market = get_market_stats(ticker)
+        price = float(market["price"].replace("%", ""))
+        volatility = market["raw_volatility"]
+
+        signal = generate_signal(sentiment, price, volatility)
 
 
 
@@ -44,9 +46,10 @@ if user_input:
         st.markdown("---")
         st.markdown(f"### 📈 Market Metrics for `{ticker}`")
 
-        col1, col2 = st.columns(2)
+        col1, col2, col3 = st.columns(3)
         col1.metric(label="🧠 Sentiment Score", value=sentiment)
-        col2.metric(label="💸 24h Price Change", value=price)
+        col2.metric(label="💸 24h Price Change", value=market["price"])
+        col3.metric(label="📊 Volatility", value=market["volatility"])
 
         
         # Show signal
