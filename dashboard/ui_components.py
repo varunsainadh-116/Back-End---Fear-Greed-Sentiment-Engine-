@@ -10,6 +10,26 @@ def render_response_box(response: str):
     st.markdown("### 🤖 LLM Response:")
     st.markdown(f"<div class='response-box'>{response}</div>", unsafe_allow_html=True)
 
+def render_trade_signal(signal_data):
+    signal_color = {
+        "BUY": "#004d40",     
+        "SELL": "#b71c1c",    
+        "HOLD": "#1b5e20",
+    }
+
+    box_color = signal_color.get(signal_data["signal"].upper(), "#263238")
+
+    html = f"""
+    <div style='background-color: {box_color}; padding: 20px; border-radius: 10px; color: white; margin-top: 1rem;'>
+        <b>📍 Signal:</b> {signal_data['signal']}<br>
+        <b>💡 Confidence:</b> {signal_data['confidence']}<br>
+        <b>⏳ Holding:</b> {signal_data['holding_period']}
+    </div>
+    """
+    st.markdown("### 📊 Trade Signal")
+    st.markdown(html, unsafe_allow_html=True)
+
+
 def custom_css():
     st.markdown("""
         <style>

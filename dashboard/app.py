@@ -7,6 +7,10 @@ from utils.handlers import handle_text_input
 from utils.market_utils import get_price_change
 from utils.sentiment_utils import get_sentiment_score
 from utils.helpers import extract_ticker
+from utils.signal_utils import generate_signal
+from dashboard.ui_components import render_trade_signal
+
+
 
 # Page setup
 st.set_page_config(page_title="Sentiment Signal AI", layout="centered")
@@ -30,8 +34,11 @@ if user_input:
         # Extract ticker, sentiment, price
         ticker = extract_ticker(user_input)
         ticker = ticker if ticker else "BTC"
-        sentiment = get_sentiment_score(user_input)
-        price = get_price_change(ticker)
+        sentiment = float(get_sentiment_score(user_input))
+        price = float(get_price_change(ticker).replace("%", ""))
+        signal = generate_signal(sentiment, price)
+
+
 
         # ---------------- METRICS ----------------
         st.markdown("---")
@@ -40,6 +47,11 @@ if user_input:
         col1, col2 = st.columns(2)
         col1.metric(label="🧠 Sentiment Score", value=sentiment)
         col2.metric(label="💸 24h Price Change", value=price)
+
+        
+        # Show signal
+        render_trade_signal(signal)
+
 
         # ---------------- RESPONSE ----------------
         st.markdown("---")
