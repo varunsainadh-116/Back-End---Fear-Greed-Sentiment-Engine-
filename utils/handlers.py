@@ -14,10 +14,29 @@ def handle_text_input(user_input: str) -> str:
         return handle_tweet_url(user_input)
     elif "reddit.com" in user_input:
         return handle_reddit_url(user_input)
-    elif "http" in user_input:
-        return "⚠️ Unsupported URL format."
     else:
-        return handle_custom_text(user_input)
+        ticker = extract_ticker(user_input)
+        if not ticker:
+            return (
+                "⚠️ Sorry, I couldn't determine which cryptocurrency you're referring to.\n"
+                "Could you please specify the asset (e.g. BTC, ETH, SOL)?"
+            )
+
+        price_change = get_price_change(ticker)
+        sentiment_score = get_sentiment_score(user_input)
+
+        prompt = f"""
+        The user is asking about the outlook for {ticker}. 
+        Based on current sentiment and price data:
+
+        Query: "{user_input}"
+        {ticker} price change: {price_change}
+        Sentiment score: {sentiment_score}
+
+        Suggest what the user should be aware of and whether to take action.
+        """
+        return get_trade_suggestion(prompt)
+
     
 def handle_custom_text(text: str) -> str:
     ticker = extract_ticker(text)
