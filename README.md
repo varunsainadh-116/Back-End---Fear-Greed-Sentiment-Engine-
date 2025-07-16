@@ -20,6 +20,7 @@ decision-making.🔗 [Website-Link](http://?:8501/).
 ---
 ## ☁️ AWS Deployment Architecture
 The application is deployed across multiple availability zones using EC2 instances, an Application Load Balancer, target groups, and private/public subnets with custom firewalls.
+![img.png](workflow_diagram/diagram4.png)
 ## 🔁 Workflow Diagram
 ![img.png](workflow_diagram/diagram3.png)
 ## 📸 App Preview
