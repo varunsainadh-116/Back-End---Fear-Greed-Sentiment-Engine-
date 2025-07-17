@@ -1,30 +1,23 @@
 # Data Sources
-tweepy
-praw
-yfinance
-requests
+tweepy             # For Twitter API access
+praw               # For Reddit API access
+yfinance           # For crypto market stats
+requests           # For HTTP requests
 
 # Sentiment & NLP
-vaderSentiment
-transformers
-torch
-spacy
-textblob
+vaderSentiment     # Rule-based sentiment analysis
+transformers       # For using transformer models
+torch              # Backend for transformers
+textblob           # Lightweight sentiment classifier
 
-# VectorDB (optional, only if you're storing embeddings)
-chromadb
+# VectorDB (optional)
+chromadb           # If using vector-based document retrieval (optional)
 
-#  LLM & APIs
-groq
-openai  # (Optional fallback, not needed if only using Groq)
+# LLM & API Clients
+groq               # Primary LLM provider (e.g., Mixtral)
+openai             # Optional fallback, only if configured
 
 # Backend & UI
-flask
-streamlit
-python-dotenv
-
-# Data Handling
-pandas
-matplotlib
-scikit-learn
-tqdm
+flask              # For API routes like /get_sentiment, /generate_signal
+streamlit          # For frontend dashboard
+python-dotenv      # Load secrets like API keys from .env
