@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+  sentiment-dashboard:
+    build: .
+    container_name: sentiment_signal_ai
+    ports:
+      - "8501:8501"
+    volumes:
+      - .:/app
+    environment:
+      - PYTHONUNBUFFERED=1
+      - STREAMLIT_BROWSER_GATHER_USAGE_STATS=false
