@@ -1,7 +1,7 @@
 # 📊 Sentiment Signal AI - Crypto Assistant
 
 **Sentiment Signal AI** is an intelligent crypto assistant that aggregates data from Twitter, Reddit, and news APIs, analyzes sentiment trends in real time, and provides actionable trade signals using LLM-powered 
-decision-making.🔗 [Website-Link](http://?:8501/).
+decision-making.🔗 [Website-Link](http://15.206.133.131:8504/).
 
 ---
 
